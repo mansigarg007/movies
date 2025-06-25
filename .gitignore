@@ -1,0 +1,16 @@
+# Ignore Python cache and virtual environment
+__pycache__/
+venv/
+
+# Ignore data and model files
+*.pkl
+*.csv
+*.log
+
+# Ignore config files with secrets
+config.json
+src/config.json
+
+# Ignore OS files
+.DS_Store
+Thumbs.db 
