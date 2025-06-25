@@ -4,7 +4,7 @@ import logging
 import os
 if not (os.path.exists('df_cleaned.pkl') and os.path.exists('cosine_sim.pkl')):
        import subprocess
-       subprocess.run(['python', 'preprocess.py'], check=True)
+       subprocess.run(['python', 'src/preprocess.py'], check=True)
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
