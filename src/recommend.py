@@ -1,11 +1,22 @@
 # recommend.py
 import joblib
 import logging
-
 import os
-if not (os.path.exists('df_cleaned.pkl') and os.path.exists('cosine_sim.pkl')):
-       import subprocess
-       subprocess.run(['python', 'preprocess.py'], check=True)
+import subprocess
+
+# Check for all required .pkl files
+required_pkls = ['df_cleaned.pkl', 'cosine_sim.pkl', 'tfidf_matrix.pkl']
+if not all(os.path.exists(f) for f in required_pkls):
+    try:
+        result = subprocess.run(['python', 'preprocess.py'], check=True, capture_output=True, text=True)
+        print(result.stdout)
+        print(result.stderr)
+    except subprocess.CalledProcessError as e:
+        print('ERROR running preprocess.py:', e)
+        print('stdout:', e.stdout)
+        print('stderr:', e.stderr)
+        raise
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
