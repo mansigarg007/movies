@@ -1,4 +1,19 @@
 # preprocess.py
+import os
+
+csv_path = "src/movies.csv"
+if not os.path.exists(csv_path):
+    try:
+        import gdown
+    except ImportError:
+        import subprocess
+        subprocess.run(['pip', 'install', 'gdown'])
+        import gdown
+    file_id = "1hZrmBGXr2Cs20FB8UtaVdIGjXYfeBDlE"
+    url = f"https://drive.google.com/uc?id={file_id}"
+    gdown.download(url, csv_path, quiet=False)
+
+# ...rest of your preprocess.py code...
 import pandas as pd
 import re
 import nltk
